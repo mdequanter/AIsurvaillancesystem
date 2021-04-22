@@ -4,6 +4,12 @@ import os.path
 
 
 
+recordingFramesPerSec = 10
+recordingWidth =  640
+recordingheight = 480
+
+
+
 def getCurrentDateTime() :
     now = datetime.datetime.now()
     year = '{:02d}'.format(now.year)
@@ -15,13 +21,14 @@ def getCurrentDateTime() :
     currentDateTime = '{}-{}-{} {}:{}:{}'.format(year, month, day,hour,minute,second)
     return currentDateTime
 
-def getCurrentDateAndHour() :
+def getCurrentDateAndHourMinute() :
     now = datetime.datetime.now()
     year = '{:02d}'.format(now.year)
     month = '{:02d}'.format(now.month)
     day = '{:02d}'.format(now.day)
     hour = '{:02d}'.format(now.hour)
-    returnString = '{}{}{}{}'.format(year, month, day,hour)
+    minute = '{:02d}'.format(now.minute)
+    returnString = '{}{}{}{}{}'.format(year, month, day,hour,minute)
     return returnString
 
 
@@ -60,13 +67,11 @@ def motionDetection():
 
 
             if (recording == True) :
-                fileName = 'out/' + str(getCurrentDateAndHour()) + '.avi'
+                fileName = 'events/' + str(getCurrentDateAndHourMinute()) + '.avi'
                 if os.path.isfile(fileName):
                     out.write(frame1)
                 else:
-                    if 'out' in locals():
-                        out.release()
-                    out = cv.VideoWriter(fileName, cv.VideoWriter_fourcc('M', 'J', 'P', 'G'), 25, (640, 480))
+                    out = cv.VideoWriter(fileName, cv.VideoWriter_fourcc('M', 'J', 'P', 'G'), recordingFramesPerSec, (recordingWidth, recordingheight))
                     out.write(frame1)
 
         # cv.drawContours(frame1, contours, -1, (0, 255, 0), 2)
