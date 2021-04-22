@@ -1,5 +1,5 @@
 # AIsurvaillancesystem
-A python based  survaillance system with Artificial intelligence
+A python based  survaillance system with Artificial intelligence and based on OpenCV
 
 Ideal and tested environment :
 
