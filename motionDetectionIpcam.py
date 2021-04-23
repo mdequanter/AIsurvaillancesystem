@@ -16,11 +16,10 @@ recordingFramesPerSec = 10
 recordingWidth =  1920
 recordingheight = 1080
 
-ipcamera = "192.168.0.9"
-username = "admin"
-password = "xxx"
-
-
+ipcamera = "192.168.0.30"
+username = "xxxxxxx"
+password = "xxxxxxx"
+camName = "ANPR"
 
 
 def getCurrentDateTime() :
@@ -72,19 +71,21 @@ def motionDetection():
         contours, _ = cv.findContours(
             dilated, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
 
+        local_time = getCurrentDateTime()
+        cv.putText(frame1, camName+ ": {}".format(local_time), (40, 40), cv.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 3)
+
         for contour in contours:
             (x, y, w, h) = cv.boundingRect(contour)
-            if cv.contourArea(contour) < 2000:
+            if cv.contourArea(contour) < 20000:
                 if (recording == True) :
                     recording  = False
                 continue
 
             # seconds passed since epoch
 
-            local_time = getCurrentDateTime()
+
 
             #cv.rectangle(frame1, (x, y), (x+w, y+h), (0, 255, 0), 2)
-            #cv.putText(frame1, "Rec: {}".format(local_time), (20, 20), cv.FONT_HERSHEY_SIMPLEX,1, (255, 0, 0), 3)
             if (recording == False) :
                 recording = True
 
@@ -96,9 +97,11 @@ def motionDetection():
                 else:
                     out = cv.VideoWriter(fileName, fourcc, recordingFramesPerSec, (recordingWidth, recordingheight))
                     out.write(frame1)
+                cv.putText(frame1, "Recording", (40, 80), cv.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 3)
+                #cv.drawContours(frame1, contours, -1, (0, 255, 0), 2)
 
 
-        # cv.drawContours(frame1, contours, -1, (0, 255, 0), 2)
+
 
         cv.imshow("Video", frame1)
         frame1 = frame2
