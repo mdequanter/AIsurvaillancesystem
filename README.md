@@ -54,11 +54,13 @@ The same you need to do  for pip (installation manager)
 
 To check you can run :
     
-pi@raspberrypi: python --version
+    pi@raspberrypi: python --version
+
 You should see :  Python 3.x.x
 
 
-pi@raspberrypi: pip --version
+    pi@raspberrypi: pip --version
+
 You should see :  ...... (Python 3.x)
 
 
