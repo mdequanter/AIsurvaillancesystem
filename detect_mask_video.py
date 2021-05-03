@@ -100,7 +100,6 @@ maskNet = load_model(args["model"])
 # initialize the video stream and allow the camera sensor to warm up
 print("[INFO] starting video stream...")
 vs = VideoStream(src=0).start()
-#vs = VideoStream("rtsp://python:Nijverheidskaai170@192.168.0.30").start()
 
 time.sleep(2.0)
 
