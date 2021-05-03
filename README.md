@@ -105,7 +105,25 @@ At the same time you can launch another session to view an IP camera :
     pi@raspberrypi: python motionDetectionIpcam.py
 
 
+If you want to do Mask detection
 
+Please install following python modules only tested on a PC (Not on Raspberry Pi) :
+
+tensorflow
+keras
+imutils
+numpy
+opencv-python
+matplotlib
+argparse
+scipy
+scikit-learn
+pillow
+streamlit
+pyobjc
+
+
+Then run :  python detect_mask_video.py
 
 
 
